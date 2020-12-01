@@ -1,10 +1,19 @@
 package trabalhoar;
 public class Facade {
-    public Facade(){
-        
+    private static Facade instance;
+    
+    private Facade(){ }
+    
+    public static synchronized Facade getInstance(){ //metodo p/ instanciar objeto
+        if(instance == null){
+            instance = new Facade();
+        }
+        return instance;
     }
+    
     public void exibir(){
-        Tela t = new Tela(); //Instancia o objeto Tela
-        t.telinha(); //Chama o metodo telinha para exibir a tela
+    Tela t = Tela.getInstance();
+    t.escreverArquivo();
     }
+    
 }
